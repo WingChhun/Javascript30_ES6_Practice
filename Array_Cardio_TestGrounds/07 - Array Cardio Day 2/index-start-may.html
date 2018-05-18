@@ -51,40 +51,45 @@
         id: 542328
       }
     ];
-
+    const Current = new Date();
+    console.log("Date", Current);
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
+    const old = people.some((person) => {
+      let currentYear = Current.getFullYear();
+      return currentYear - person.year >= 19;
+    });
+    old ? console.log("At least one person is 19 or older") : console.log("Nobody is 19 or older");
     // Array.prototype.every() // is everyone 19 or older?
-    let date = new Date();
-    let year = date.getFullYear();
-    console.log("year", year);
-    let truthyNineteen = people.some((person) => {
-      let age = year - person.year;
-      return age >= 19;
-    });
-
-    (truthyNineteen) ? console.log("at least one person is 19 or order"): console.log(
-      "There is not one that is 19 or older");
-    let truthyEvery = people.every((person) => {
-      let age = year - person.year;
-      return age >= 19;
-
-    });
-    (truthyEvery) ? console.log("Every person is 19 or older"): console.log("Not every person is 19 or older");
+const older = people.every((person)=>
+{
+return Current.getFullYear - person.year >=19;
+});
+older ? console.log("Everyone is 19 or older") : console.log("Not everyone is 19 or older");
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-    let foundComment = comments.find((comment) => comment.id === 823423);
-    (foundComment) ? console.log("Found comment", foundComment): console.log("Did not find comment", foundComment);
+const foundComment = comments.find((comment,index)=>
+{
+return comment.id == 823423;
+});
+console.log("Comment with 823423",foundComment);
     // Array.prototype.findIndex()
     // Find the comment with this ID
-    let commentIndex = comments.findIndex((comment) => comment.id === 823423);
-    console.log("Comment index is ", commentIndex);
+    const findComment = comments.findIndex((person)=>
+    {
+return person.id == 823423;
+    })
+    console.log("Found", findComment);
     // delete the comment with the ID of 823423
-comments.remove(commentIndex);
-    console.log("New comment after deleting index of found comment");
-    console.table(comments);
-  </script>
+
+const newComments = [
+
+...comments.slice(0,findComment),
+...comments.slice(findComment+1, comments.length)
+];
+console.table(newComments);
+</script>
 </body>
 
 </html>
