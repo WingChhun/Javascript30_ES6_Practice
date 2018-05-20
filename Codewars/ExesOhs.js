@@ -1,0 +1,26 @@
+// Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contain any char.
+
+// Examples input/output:
+
+// XO("ooxx") => true
+// XO("xooxx") => false
+// XO("ooxXm") => true
+// XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+// XO("zzoo") => false
+
+//SOLUTION
+
+//using object.keys
+
+function XO(str) {
+    //code here
+    str = str.toLowerCase().split('');
+    const newObj = {};
+    str.forEach((value) => {
+        //create an object
+        (newObj[value] ? newObj[value]++ : newObj[value] = 1)
+    });
+    console.log("contents of newObj", newObj);
+    return (newObj['o'] == newObj['x'] ? true : false)
+
+}
